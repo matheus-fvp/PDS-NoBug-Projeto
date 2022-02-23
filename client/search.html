@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Page</title>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="search.css">
+    <script type="text/javascript" src="faceLoginInit.js"></script>
     <script type="text/javascript" src="search.js"></script>
 
 
@@ -14,10 +15,16 @@
 <body>
     <div class="mainDiv">
         <div class="searchContainer">
-            <input class="searchInput" placeholder="Digite sua busca">
+            <input class="searchInput" id="searchQuery" placeholder="Digite sua busca">
+            <input class="maxResults" id="maxNum" placeholder="Max tweets">
             <button class="searchButton" onclick="search();">Buscar</button>
-            <div class="resultContainer">
-                
+            <div class="resultContainer" id="resultContainer">
+                <!-- 
+                    <div class="card">
+                        <div class="twitterUser">Name</div>
+                        <div class="tweetContent">Conteudo</div>
+                    </div>
+                -->
             </div>
         
         </div>

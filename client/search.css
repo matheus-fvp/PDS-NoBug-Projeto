@@ -1,0 +1,133 @@
+body{
+    margin: 0;
+}
+
+.mainDiv{
+    height: 100vh;
+    width: 100%;
+    background-color: aqua;
+
+    overflow: auto;
+}
+
+.searchContainer{
+    height: 630px;
+    min-width: 570px;
+    max-width: 700px;
+
+    background-color: rgb(200, 200, 200);
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+
+
+    border-radius: 20px;
+    box-shadow: 7px 7px 7px 7px rgba(0, 0, 0, 0.438);
+}
+
+.searchInput{
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+
+    height: 30px;
+
+    font-size: 20px;
+    background-color: rgb(233, 233, 233);
+
+    border-radius: 10px;
+    border: none;
+}
+
+.maxResults{
+    margin-left: 5px;
+    margin-top: 20px;
+    padding-left: 10px;
+    
+    width: 110px;
+    height: 30px;
+
+    font-size: 20px;
+    background-color: rgb(233, 233, 233);
+
+    border-radius: 10px;
+    border: none;
+}
+
+.resultContainer{
+    padding-top: 10px;
+    margin-top: 50px;
+    background-color: grey;
+    height: 450px;
+    width: auto;
+
+    overflow-y: scroll;
+}
+
+.result{
+    font-size: 30px;
+}
+
+
+.searchButton {
+    width: 100px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    font-size: 20px;
+    margin-left: 20px; 
+
+    border-radius: 20px;
+}
+
+.searchButton:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.searchButton:active {
+    background-color: rgb(92, 92, 92);
+}
+
+
+.card{
+    height: fit-content;
+    width: auto;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+.twitterUser{
+    font-size: 22px;
+}
+
+.tweetContent{
+    display: block;
+    font-size: 17px;
+    margin-top: 5px;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: rgb(160, 160, 160);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
