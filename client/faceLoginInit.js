@@ -19,7 +19,7 @@ window.onload = () => {
             FB.AppEvents.logPageView();
 
             FB.getLoginStatus(function(response) {
-                console.log(response);
+                // nada
             });
         };
 
