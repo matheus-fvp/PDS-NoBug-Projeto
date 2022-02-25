@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,27 +7,36 @@
     <title>Search Page</title>
 
     <link rel="stylesheet" type="text/css" href="search.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script type="text/javascript" src="faceLoginInit.js"></script>
     <script type="text/javascript" src="search.js"></script>
 
 
 </head>
 <body>
-    <div class="mainDiv">
+    <main class="container">
+        <h1>Encontre Tweets utilizando palavras chave!</h1>
+
         <div class="searchContainer">
-            <input class="searchInput" id="searchQuery" placeholder="Digite sua busca">
-            <input class="maxResults" id="maxNum" placeholder="Max tweets">
-            <button class="searchButton" onclick="search();">Buscar</button>
-            <div class="resultContainer" id="resultContainer">
-                <!-- 
-                    <div class="card">
-                        <div class="twitterUser">Name</div>
-                        <div class="tweetContent">Conteudo</div>
-                    </div>
-                -->
-            </div>
+            <input class="searchInput d-block" id="searchQuery" placeholder="Digite sua busca">
+            <input class="maxResults d-block" id="maxNum" placeholder="Max tweets">
+            <button class="searchButton d-block btn btn-primary" onclick="search();">Buscar</button>
         
         </div>
-    </div>
+
+        <div id="historico">
+            <h5>Histórico de pesquisa:</h5>
+            <ul>
+                <li><a href="#">palavra 1</a></li>
+                <li><a href="#">palavra 2</a></li>
+                <li><a href="#">palavra 3</a></li>
+                <li><a href="#">palavra 4</a></li>
+            </ul>
+        </div>
+
+        <div class="resultContainer row" id="resultContainer">
+                <h5>Nenhuma busca realizada :(</h5>
+        </div>
+    </main>
 </body>
 </html>
