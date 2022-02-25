@@ -1,29 +1,48 @@
-body{
-    margin: 0;
+:root {
+    --cor0: #0B0073;
+    --cor1: #5A49F4;
+    --cor2: #1800F2;
+    --cor3: #2A2273;
+    --cor4: #1500C2;
 }
 
-.mainDiv{
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main{
     height: 100vh;
     width: 100%;
-    background-color: aqua;
-
+    background-image: linear-gradient(to right, #0B0073, #5A49F4);
     overflow: auto;
 }
 
 .loginContainer{
 
-    height: 140px;
-    width: 340px;
-    background-color: rgb(207, 207, 207);
+    height: 300px;
+    width: 400px;
+    background-color: #1800F2;
 
     margin-left: auto;
     margin-right: auto;
-    margin-top: 200px;
+    margin-top: 150px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.363);
 
-    border-radius: 40%;
+    border-radius: 10px;
 }
 
-.inst {
+.loginContainer h1 {
+    color: white;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/*.inst {
 
     display: block;
 
@@ -31,21 +50,27 @@ body{
     margin-top: 40px;
     color: black;
     font-size: 30px;
-}
+}*/
 
 
 .fbButton {
+    display: block;
+    position: relative;
+    bottom: -30px;
+    right: -30px;
+    color: white;
+    font-weight: bolder;
     width: 250px;
     height: 50px;
-    background-color: white;
+    background-color: var(--cor3);
     border: none;
     font-size: 20px;
-
     border-radius: 20px;
+
 }
 
 .fbButton:hover {
-    background-color: rgb(228, 228, 228);
+    background-color: var(--cor0);
 }
 
 .fbButton:active {
@@ -55,6 +80,6 @@ body{
 
 .fb-container{
     display: inline-block;
-    margin-top: 45px;
+    margin-top: 10px;
     margin-left: 45px;
 }
