@@ -10,7 +10,7 @@ window.onload = () => {
         // Run any script after sdk is loaded
         window.fbAsyncInit = function() {
             FB.init({
-              appId      : "449951210206827"/*"2230411237123442"*/,
+              appId      : "2230411237123442",
               cookie     : true,
               xfbml      : true,
               version    : "v13.0"
