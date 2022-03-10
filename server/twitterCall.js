@@ -1,6 +1,7 @@
 const express = require("express");
 const https = require('https');
 const router = express.Router();
+const dotenv = require("dotenv").config();
 
 
 router.post("/twitterCall", async (req, res) => {
@@ -11,18 +12,18 @@ router.post("/twitterCall", async (req, res) => {
         return;
     }
     
-    let apiPath = "https://api.twitter.com/2/tweets/search/recent?query=";
+
     let options = "&max_results=" + req.body.maxNum + "&tweet.fields=author_id,created_at";
-    let query = req.body.query;
+    let query = "/2/tweets/search/recent?query=" + encodeURI(req.body.query);
 
     const headerOptions = {
         hostname: "api.twitter.com",
         port: 443,
         headers: {
             "User-Agent": "v2RecentSearchJS",
-            "authorization": "Bearer AAAAAAAAAAAAAAAAAAAAABxiZAEAAAAAvA8QYBr6TPIYnBzrpnxEdk3XoL4%3DDwhTKdypqfbrWouhPitNO4elvpYUCMR7DYAf4q8qmPMQr1PeU7"
+            "authorization": "Bearer " + process.env.BEARER
         },
-        path: apiPath + query + options,
+        path: query + options,
         method: 'GET'
     };
 
