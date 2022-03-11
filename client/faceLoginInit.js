@@ -17,10 +17,19 @@ window.onload = () => {
             });
               
             FB.AppEvents.logPageView();
-
+            
+            
             FB.getLoginStatus(function(response) {
-                // nada
+                if (response.status == 'connected'){
+                    if( window.location.href == "https://localhost/")
+                        window.location.href = "/search";
+                }
+                else{
+                    if( window.location.href == "https://localhost/search")
+                        window.location.href = "/";
+                }
             });
+
         };
 
         // inject sdk.js
@@ -30,6 +39,8 @@ window.onload = () => {
             script.async = true;
             script.src = "https://connect.facebook.net/en_US/sdk.js";
             d.getElementsByTagName("head")[0].appendChild(script);
-        })(document);
+        })(document)
+
     }
+
 }
