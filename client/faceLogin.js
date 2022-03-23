@@ -8,7 +8,7 @@ function fb_login() {
             user_id = response.authResponse.userID; //get FB UID
 
             window.location.href = "/search";
-
+        
             /*
             FB.api('/me', function(response) {
                 let user_email = response.email; //get user email
