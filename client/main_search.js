@@ -1,10 +1,14 @@
-import { search } from "./search.js";
+import { fb_login } from "./modules/faceLogin.js";
+import { init, search } from "./modules/search.js";
 
 const btnSearch = document.getElementById("btnSearch");
-const div_historic = document.getElementById("historico");
-
-//initialize_historic();
+const btnHist = document.getElementById("btn_hist");
 
 btnSearch.addEventListener('click', () => {
-    search();
+    search(document.getElementById("searchQuery").value, document.getElementById("maxNum").value);
+});
+
+btnHist.addEventListener('click', () => {
+    btnHist.remove();
+    init();
 });

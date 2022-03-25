@@ -11,7 +11,9 @@ const firebaseApp = initializeApp({
     appId: "1:1021272577391:web:41cdf774c5ec9d452b449a"
 });
 
-export const db = getDatabase(firebaseApp);
+const db = getDatabase(firebaseApp);
+
+export {db};
 
 /*export function insert_database(id) {
     set(ref(db, "users/" + id + "/historic/" + 20), {
