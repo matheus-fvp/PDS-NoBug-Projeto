@@ -8,10 +8,11 @@ function fb_login() {
         if (response.authResponse) {
             let access_token = response.authResponse['accessToken']; //get access token
             let user_id = response.authResponse.userID; //get FB UID
-            console.log(user_id);
+            //console.log(user_id);
 
-            get(child(ref(db), "users/" + user_id)).then((response)=> {
-                if(!response.exists()) {
+            get(child(ref(db), "users/")).then((response)=> {
+                console.log(response);
+                if(response && !response.hasChild(user_id)) {
                     set(ref(db, "users/" + user_id), {
                         count: 0
                     })
