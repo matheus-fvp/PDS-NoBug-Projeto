@@ -8,10 +8,12 @@
 
     <link rel="stylesheet" type="text/css" href="search.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+
     <script type="text/javascript" src="faceLoginInit.js"></script>
     <script type="text/javascript" src="faceLogout.js"></script>
-    <script type="text/javascript" src="search.js"></script>
-
+    <script type="module" src="./modules/firebase.js"></script>
+    <script type="module" src="./main_search.js"></script>
+    
 
 </head>
 <body>
@@ -21,24 +23,22 @@
         <div class="searchContainer">
             <input class="searchInput d-block" id="searchQuery" placeholder="Digite sua busca">
             <input class="maxResults d-block" id="maxNum" placeholder="Max tweets">
-            <button class="searchButton d-block btn btn-primary" onclick="search();">Buscar</button>
+            <button id="btnSearch" class="searchButton d-block btn btn-primary">Buscar</button>
             <button class="searchButton d-block btn btn-primary" onclick="faceLogout();">Log Out</button>
 
         </div>
 
         <div id="historico">
-            <h5>Histórico de pesquisa:</h5>
-            <ul>
-                <li><a href="#">palavra 1</a></li>
-                <li><a href="#">palavra 2</a></li>
-                <li><a href="#">palavra 3</a></li>
-                <li><a href="#">palavra 4</a></li>
-            </ul>
+            <h5 class="d-inline-block">Histórico de pesquisa:</h5>
+            <button id="reload" class="btn_reload"></button>
+            <button id="btn_hist" class="searchButton d-block btn btn-primary">Visualizar histórico</button>
+            <div id="historic_list" class="text-center"></div>
         </div>
 
         <div class="resultContainer row" id="resultContainer">
                 <h5>Nenhuma busca realizada :(</h5>
         </div>
     </main>
+
 </body>
 </html>
