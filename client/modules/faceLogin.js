@@ -1,7 +1,6 @@
-import { db } from "./firebase.js";
-import { ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-database.js";
+import { db, ref, set, get, child, update } from "./firebase.js";
 
-function fb_login() {
+function faceLogin() {
 
     FB.login( response => {
 
@@ -14,10 +13,10 @@ function fb_login() {
                 console.log(response);
                 if(response && !response.hasChild(user_id)) {
                     set(ref(db, "users/" + user_id), {
-                        count: 0
+                        count: 4
                     })
                 }
-            })
+            });
             
             window.location.href = "/search";
         
@@ -38,4 +37,12 @@ function fb_login() {
     
 }
 
-export { fb_login };
+function faceLogout() {
+
+    FB.logout(function(response) {
+        window.location.href = "/";
+      });
+
+}
+
+export { faceLogin, faceLogout };

@@ -9,13 +9,15 @@
     <link rel="stylesheet" type="text/css" href="search.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 
-    <script type="text/javascript" src="faceLoginInit.js"></script>
-    <script type="text/javascript" src="faceLogout.js"></script>
     <script type="module" src="./modules/firebase.js"></script>
-    <script type="module" src="./main_search.js"></script>
+    <script type="text/javascript" src="./modules/faceLoginInit.js"></script>
+    <script type="module" src="./modules/faceLogin.js"></script>
+    <script type="module" src="./modules/searchListeners.js"></script>
+    <script type="module" src="./modules/search.js"></script>
     
 
 </head>
+
 <body>
     <main class="container">
         <h1>Encontre Tweets utilizando palavras chave!</h1>
@@ -24,15 +26,15 @@
             <input class="searchInput d-block" id="searchQuery" placeholder="Digite sua busca">
             <input class="maxResults d-block" id="maxNum" placeholder="Max tweets">
             <button id="btnSearch" class="searchButton d-block btn btn-primary">Buscar</button>
-            <button class="searchButton d-block btn btn-primary" onclick="faceLogout();">Log Out</button>
+            <button class="searchButton d-block btn btn-primary" id="btnLogout">Log Out</button>
 
         </div>
 
         <div id="historico">
             <h5 class="d-inline-block">Histórico de pesquisa:</h5>
-            <button id="reload" class="btn_reload"></button>
-            <button id="btn_hist" class="searchButton d-block btn btn-primary">Visualizar histórico</button>
-            <div id="historic_list" class="text-center"></div>
+            <!--<button id="reload" class="btn_reload"></button>-->
+            <button id="btnHist" class="searchButton d-block btn btn-primary">Visualizar histórico</button>
+            <div id="historyList" class="text-center"></div>
         </div>
 
         <div class="resultContainer row" id="resultContainer">

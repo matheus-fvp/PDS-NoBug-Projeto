@@ -14,7 +14,7 @@ const app = express();
 dotenv.config();
 
 
-app.use(cors()); // só no desenvolvimento
+//app.use(cors()); // só no desenvolvimento
 app.use(express.json()); // converte pra json
 app.use(express.static(path.join(__dirname + "/../client/")));
 

@@ -1,32 +1,63 @@
-import { ref, set, get, child, update } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-database.js";
-import { db } from './firebase.js';
+import { db, ref, set, get, child, update } from "./firebase.js"
+
+
+const historicList = document.getElementById("historyList");
+
 
 function search(word_key, max_tweets, save){
-
+    
     const dbref = ref(db);
+
     if(save) {
-        FB.api('/me', {fields: 'id'}, res => {
+        FB.api('/me', { fields: 'id' }, res => {
 
             let user_id = res['id'];
 
-            get(child(dbref, "users/"+ user_id)).then((response) =>{
+            get( child(dbref, "users/"+ user_id) ).then( (response) => {
                 let count;
                 let btn_id;
-                let hist_list = document.getElementById("historic_list");
+
                 if(response.exists()) {
                     //console.log(response.val().historic['20'].key_word);
                     count = response.val().count;
+                    if(!document.getElementById("btnHist")) {
+
+                        if(!response.hasChild("historic")) {
+                            let text = historicList.getElementsByTagName("h3");
+                            historicList.removeChild(text[0]);
+                        }
+
+                        btn_id = document.getElementById("hist_item" + count);
+
+                        if(!btn_id) {
+                            CreateHistoryButton(historicList, "hist_item" + count, word_key, max_tweets);
+                        }else {
+                            btn_id.textContent = word_key;
+                            btn_id.removeEventListener('click', search);
+                            btn_id.addEventListener('click', () => {
+                                search(word_key, max_tweets, false);
+                            });
+                        }
+                    }
+            
                     set(ref(db, "users/" + user_id + "/historic/" + count), {
                         key_word: word_key,
                         qtd: max_tweets
-                    })
-                    count = (count + 1) % 4;
+                    });
+
+                    count--;
+                    
+                    if(count < 0)
+                        count = 5;
+                    
                     update(ref(db, "users/" + user_id), {
                         count: count
-                    })
+                    });
                     
                 }
             })
+
+
         });
     }
 
@@ -81,25 +112,26 @@ function search(word_key, max_tweets, save){
     
 }
 
-function init() {
-    const historicList = document.getElementById("historic_list");
+function LoadHistory() {
+
+    if(document.getElementById("btnHist"))
+        document.getElementById("btnHist").remove();
+
     FB.api('/me', {fields: 'id'}, res => {
 
         let user_id = res['id'];
 
         get(child(ref(db), "users/" + user_id)).then((response) => {
+
             if(response.hasChild("historic")) {
+
                 let size = response.val().historic.length;
+
                 for(let i = 0; i < size; i++) {
-                    let btn = document.createElement("button");
                     let data = response.val().historic[i].key_word;
-                    btn.id = "hist_item" + i;
-                    btn.className = "searchButton btnHistory btn btn-primary d-inline-block";
-                    btn.textContent = data;
-                    historicList.appendChild(btn);
-                    btn.addEventListener('click', () => {
-                        search(data, response.val().historic[i].qtd, false);
-                    }); 
+                    let qtd_tweets = response.val().historic[i].qtd;
+                    let id = "hist_item" + i;
+                    CreateHistoryButton(historicList, id, data, qtd_tweets);
                 }
 
             }else {
@@ -120,5 +152,17 @@ function cleanResults(id){
         elements[elements.length - 1].remove();
 }
 
-export { search, init, cleanResults }
+function CreateHistoryButton(parent, id, key_word, qtd_tweets) {
 
+    let btn = document.createElement("button");
+    btn.id = id;
+    btn.className = "searchButton btnHistory btn btn-primary d-inline-block";
+    btn.textContent = key_word;
+    parent.appendChild(btn);
+    btn.addEventListener('click', () => {
+        search(key_word, qtd_tweets, false);
+    });
+
+}
+
+export { search, LoadHistory, cleanResults }

@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-database.js";
+import { ref, set, get, child, update } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-database.js";
+
 
 const firebaseApp = initializeApp({
     apiKey: "AIzaSyAOmUz6oV6sMiOwHwu9VOHTUCrXSrrYSys",
@@ -13,7 +15,7 @@ const firebaseApp = initializeApp({
 
 const db = getDatabase(firebaseApp);
 
-export {db};
+export {db, ref, set, get, child, update};
 
 /*export function insert_database(id) {
     set(ref(db, "users/" + id + "/historic/" + 20), {

@@ -94,7 +94,7 @@ main h1 {
     margin-bottom: 10px;
 }
 
-.btn_reload {
+/*.btn_reload {
     display: none;
     background-color: rgb(11, 94, 215);
     background-image: url('./assets/img/reload_black29x29.png');
@@ -104,7 +104,7 @@ main h1 {
     width: 33px;
     height: 33px;
 
-}
+}*/
 
 .resultContainer{
     padding: 10px;

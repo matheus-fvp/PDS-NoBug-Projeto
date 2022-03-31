@@ -61,11 +61,18 @@ router.post("/twitterCall", async (req, res) => {
 
                         let userName = "";
 
-                        try{
+                        try {
                             userName = JSON.parse(userJsonString)["data"]["name"];
                         }
                         catch (err) {
-                            res.write(JSON.parse(userJsonString)["title"]);
+                            
+                            try {
+                                res.write(JSON.parse(userJsonString)["title"]);
+                            }
+                            catch (err2){
+                                console.log(err2);
+                            }
+
                             res.end();
                             return;
                         }
