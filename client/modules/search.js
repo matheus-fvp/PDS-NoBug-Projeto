@@ -38,7 +38,7 @@ function search(word_key, max_tweets, save){
                             btn_id.removeEventListener('click', historyListeners[count]);
                             
                             var listener = () => {
-                                search(key_word, qtd_tweets, false);
+                                search(word_key, max_tweets, false);
                             }
                             
                             btn_id.addEventListener('click', listener);
