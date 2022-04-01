@@ -2,7 +2,7 @@ import { db, ref, set, get, child, update } from "./firebase.js"
 
 
 const historicList = document.getElementById("historyList");
-
+var historyListeners = [];
 
 function search(word_key, max_tweets, save){
     
@@ -14,12 +14,14 @@ function search(word_key, max_tweets, save){
             let user_id = res['id'];
 
             get( child(dbref, "users/"+ user_id) ).then( (response) => {
+
                 let count;
                 let btn_id;
 
                 if(response.exists()) {
-                    //console.log(response.val().historic['20'].key_word);
+
                     count = response.val().count;
+                    
                     if(!document.getElementById("btnHist")) {
 
                         if(!response.hasChild("historic")) {
@@ -33,10 +35,13 @@ function search(word_key, max_tweets, save){
                             CreateHistoryButton(historicList, "hist_item" + count, word_key, max_tweets);
                         }else {
                             btn_id.textContent = word_key;
-                            btn_id.removeEventListener('click', search);
-                            btn_id.addEventListener('click', () => {
-                                search(word_key, max_tweets, false);
-                            });
+                            btn_id.removeEventListener('click', historyListeners[count]);
+                            
+                            var listener = () => {
+                                search(key_word, qtd_tweets, false);
+                            }
+                            
+                            btn_id.addEventListener('click', listener);
                         }
                     }
             
@@ -45,10 +50,10 @@ function search(word_key, max_tweets, save){
                         qtd: max_tweets
                     });
 
-                    count--;
+                    count++;
                     
-                    if(count < 0)
-                        count = 5;
+                    if(count > 4)
+                        count = 0;
                     
                     update(ref(db, "users/" + user_id), {
                         count: count
@@ -159,10 +164,14 @@ function CreateHistoryButton(parent, id, key_word, qtd_tweets) {
     btn.className = "searchButton btnHistory btn btn-primary d-inline-block";
     btn.textContent = key_word;
     parent.appendChild(btn);
-    btn.addEventListener('click', () => {
+    
+    var listener = () => {
         search(key_word, qtd_tweets, false);
-    });
+    }
 
+    let lastCharacter = id[id.length - 1];
+    historyListeners[lastCharacter] = listener;
+    btn.addEventListener('click', listener);
 }
 
 export { search, LoadHistory, cleanResults }

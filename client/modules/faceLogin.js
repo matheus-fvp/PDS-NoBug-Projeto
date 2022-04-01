@@ -13,7 +13,7 @@ function faceLogin() {
                 console.log(response);
                 if(response && !response.hasChild(user_id)) {
                     set(ref(db, "users/" + user_id), {
-                        count: 4
+                        count: 0
                     })
                 }
             });
